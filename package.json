@@ -3,18 +3,18 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build",
+    "postbuild": "workbox generateSW"
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "^2.0.1",
-    "@parcel/transformer-webmanifest": "^2.0.1",
-    "autoprefixer": "^10.4.0",
-    "parcel": "^2.0.1",
-    "postcss": "^8.3.11",
-    "tailwindcss": "^2.2.19"
-  },
-  "dependencies": {
-    "alpinejs": "^3.5.0",
-    "uuid": "^8.3.2"
+    "@parcel/packager-raw-url": "^2.2.1",
+    "@parcel/transformer-webmanifest": "^2.2.1",
+    "alpinejs": "^3.8.1",
+    "autoprefixer": "^10.4.2",
+    "parcel": "^2.2.1",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.18",
+    "uuid": "^8.3.2",
+    "workbox-cli": "^6.4.2"
   }
 }

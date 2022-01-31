@@ -11,7 +11,7 @@
   <link rel="icon" href="./images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
   <meta name="theme-color" content="#f3f4f6">
-  <link rel="manifest" href="./manifest.json">
+  <link rel="manifest" href="./site.webmanifest">
 
   <link rel="stylesheet" href="./app.css">
   <script type="module" src="./app.js"></script>
@@ -136,5 +136,32 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const sw = "service-worker.js"; // it is needed because parcel will not recognize this as a file and not precess in its manner
+
+    navigator.serviceWorker
+      .register(sw)
+      .then(registration => {
+        registration.onupdatefound = () => {
+          const installingWorker = registration.installing;
+          if (installingWorker == null) {
+            return;
+          }
+          installingWorker.onstatechange = () => {
+            if (installingWorker.state === "installed") {
+              if (navigator.serviceWorker.controller) {
+                console.log("New content is available and will be used when all tabs for this page are closed.");
+              } else {
+                console.log("Content is cached for offline use.");
+              }
+            }
+          };
+        };
+      })
+      .catch(error => {
+        console.error("Error during service worker registration:", error);
+      });
+  </script>
 </body>
 </html>

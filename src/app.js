@@ -1,13 +1,3 @@
-window.addEventListener('load', async () => {
-  if ('serviceWorker' in navigator) {
-    try {
-      await navigator.serviceWorker.register(new URL('./service-worker.js', import.meta.url));
-    } catch (e) {
-      console.log('SW registration failed');
-    }
-  }
-});
-
 import Alpine from 'alpinejs';
 import {v4 as uuid} from 'uuid';
 
