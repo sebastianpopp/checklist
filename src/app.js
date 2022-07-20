@@ -6,6 +6,8 @@ Alpine.data('checklist', () => ({
   edit: false,
   checklist: null,
   checklists: null,
+  displayExportImport: false,
+  json: null,
 
   init() {
     const state = localStorage.getItem('checklists');
@@ -105,6 +107,44 @@ Alpine.data('checklist', () => ({
       this.addChecklist();
     }
   },
+
+  toggleExportImport() {
+    this.displayExportImport = !this.displayExportImport;
+
+    if (this.displayExportImport) {
+      this.json = JSON.stringify(this.checklists, null, 2);
+    }
+  },
+
+  downloadJson() {
+    const data = `data:text/json;charset=utf-8,${encodeURIComponent(this.json)}`;
+    const el = document.createElement('a');
+    el.setAttribute('href', data);
+    el.setAttribute('download', 'checklist-export.json');
+    document.body.appendChild(el);
+    el.click();
+    el.remove();
+  },
+
+  importJson() {
+    if (!confirm('Are you sure you want to import these checklists? This will overwrite your current checklists.')) {
+      return;
+    }
+
+    try {
+      const data = JSON.parse(this.json);
+      
+      this.checklists = data;
+      this.checklist = Object.keys(this.checklists)[0];
+
+      this.edit = false;
+      this.displayExportImport = false;
+
+      alert('Checklists imported successfully!');
+    } catch (e) {
+      alert('Invalid JSON');
+    }
+  }
 }));
 
 Alpine.start();

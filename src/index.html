@@ -18,7 +18,17 @@
 </head>
 <body>
   <div class="md:p-6 md:bg-gray-100 min-h-screen" x-data="checklist">
-    <div class="bg-white max-w-screen-md mx-auto md:border border-gray-300 md:shadow-xl md:rounded-xl p-6">
+    <div x-show="displayExportImport" class="bg-white max-w-screen-md mx-auto md:border border-gray-300 md:shadow-xl md:rounded-xl p-6">
+      <h1 class="text-2xl font-bold mb-2">Export / Import</h1>
+      <textarea class="w-full border border-gray-300 focus:outline-none font-mono text-xs" cols="30" rows="10" x-model="json"></textarea>
+      <div class="flex justify-end mt-2 gap-2">
+        <button class="bg-gray-200 border border-gray-300 text-black px-4 py-1 rounded hover:bg-gray-300 hover:border-gray-400 transition-colors" @click="downloadJson()">Download</button>
+        <button class="bg-gray-200 border border-gray-300 text-black px-4 py-1 rounded hover:bg-gray-300 hover:border-gray-400 transition-colors" @click="importJson()">Import</button>
+        <button class="bg-gray-200 border border-gray-300 text-black px-4 py-1 rounded hover:bg-gray-300 hover:border-gray-400 transition-colors" @click="toggleExportImport()">Close</button>
+      </div>
+    </div>
+
+    <div x-show="!displayExportImport" class="bg-white max-w-screen-md mx-auto md:border border-gray-300 md:shadow-xl md:rounded-xl p-6">
       <div class="flex justify-between items-center mb-5">
         <div class="flex-1">
           <div class="flex items-center justify-start mb-2">
@@ -55,6 +65,7 @@
                   <button class="w-full text-left px-4 py-2 text-xs text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition-colors" @click="edit = true">Edit checklist</button>
                   <button class="w-full text-left px-4 py-2 text-xs text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition-colors" @click="removeChecklist()">Remove checklist</button>
                   <button class="w-full text-left px-4 py-2 text-xs text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition-colors" @click="addChecklist()">Add new checklist</button>
+                  <button class="w-full text-left px-4 py-2 text-xs text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition-colors" @click="toggleExportImport()">Export / Import</button>
                 </div>
               </div>
             </div>
