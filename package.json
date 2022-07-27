@@ -1,5 +1,6 @@
 {
   "private": true,
+  "license": "MIT",
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
