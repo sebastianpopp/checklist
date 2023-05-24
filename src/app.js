@@ -8,6 +8,7 @@ Alpine.data('checklist', () => ({
   checklists: null,
   displayExportImport: false,
   json: null,
+  itemsScrolled: false,
 
   init() {
     const state = localStorage.getItem('checklists');
@@ -27,6 +28,13 @@ Alpine.data('checklist', () => ({
         checklist: this.checklist
       }));
     });
+
+    // monitor scroll
+    console.log(this.$refs.itemsContainer);
+    this.$refs.itemsContainer.addEventListener('scroll', () => {
+      console.log(this.$refs.itemsContainer.scrollTop);
+      this.itemsScrolled = this.$refs.itemsContainer.scrollTop > 0;
+    }, {passive: true});
   },
 
   items() {

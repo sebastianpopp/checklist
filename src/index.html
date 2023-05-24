@@ -28,8 +28,8 @@
       </div>
     </div>
 
-    <div x-show="!displayExportImport" class="flex-1 relative bg-white max-w-screen-md mx-auto md:border border-gray-300 md:shadow-xl md:rounded-xl p-6 pt-0 overflow-y-auto">
-      <div class="sticky top-0 bg-white flex justify-between items-center pt-6 pb-5">
+    <div x-show="!displayExportImport" class="flex-1 relative bg-white max-w-screen-md mx-auto md:border border-gray-300 md:shadow-xl md:rounded-xl p-6 pt-0 overflow-y-auto" x-ref="itemsContainer">
+      <div class="sticky top-0 bg-white bg-opacity-80 backdrop-blur flex justify-between items-center p-6 pb-5 z-10 -mx-6 border-b transition-colors" :class="{'border-b-white': !itemsScrolled, 'border-b-gray-300': itemsScrolled}">
         <div class="flex-1">
           <div class="flex items-center justify-start mb-2">
             <div class="flex-1" x-show="edit">
@@ -78,8 +78,8 @@
           <div class="text-gray-500" x-text="checklists[checklist].desc" x-show="!edit"></div>
           <input type="text" class="w-full text-gray-500 border border-gray-300 rounded p-1" x-model="checklists[checklist].desc" x-show="edit">
         </div>
-        <div class="relative w-16 h-16 ml-6">
-          <svg class="flex-none w-full h-full" viewBox="0 0 37 37" stroke-width="5" fill="transparent" x-show="!edit">
+        <div class="relative w-16 h-16 ml-6" x-show="!edit">
+          <svg class="flex-none w-full h-full" viewBox="0 0 37 37" stroke-width="5" fill="transparent">
             <circle stroke="#F9FAFB" r="16" cx="18.5" cy="18.5" />
             <circle
               class="transition-all transform -rotate-90 origin-center"
