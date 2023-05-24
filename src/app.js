@@ -33,6 +33,14 @@ Alpine.data('checklist', () => ({
     return this.checklists[this.checklist].items;
   },
 
+  itemsTotal() {
+    return this.items().length;
+  },
+
+  itemsCompleteCount() {
+    return this.items().filter(i => i[0]).length;
+  },
+
   progress() {
     const items = this.items();
 

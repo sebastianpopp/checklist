@@ -78,18 +78,21 @@
           <div class="text-gray-500" x-text="checklists[checklist].desc" x-show="!edit"></div>
           <input type="text" class="w-full text-gray-500 border border-gray-300 rounded p-1" x-model="checklists[checklist].desc" x-show="edit">
         </div>
-        <svg class="flex-none w-16 h-16 ml-6" viewBox="0 0 37 37" stroke-width="5" fill="transparent" x-show="!edit">
-          <circle stroke="#F9FAFB" r="16" cx="18.5" cy="18.5" />
-          <circle
-            class="transition-all transform -rotate-90 origin-center"
-            stroke="#10B981"
-            r="16"
-            cx="18.5"
-            cy="18.5"
-            :stroke-dasharray="`${16 * 2 * Math.PI} ${16 * 2 * Math.PI}`"
-            :style="{strokeDashoffset: (16 * 2 * Math.PI) - progress() / 100 * (16 * 2 * Math.PI) }"
-          />
-        </svg>
+        <div class="relative w-16 h-16 ml-6">
+          <svg class="flex-none w-full h-full" viewBox="0 0 37 37" stroke-width="5" fill="transparent" x-show="!edit">
+            <circle stroke="#F9FAFB" r="16" cx="18.5" cy="18.5" />
+            <circle
+              class="transition-all transform -rotate-90 origin-center"
+              stroke="#10B981"
+              r="16"
+              cx="18.5"
+              cy="18.5"
+              :stroke-dasharray="`${16 * 2 * Math.PI} ${16 * 2 * Math.PI}`"
+              :style="{strokeDashoffset: (16 * 2 * Math.PI) - progress() / 100 * (16 * 2 * Math.PI) }"
+            />
+          </svg>
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-bold text-gray-500" x-text="`${itemsCompleteCount()}/${itemsTotal()}`"></div>
+        </div>
       </div>
       
       <template x-for="(item, index) in checklists[checklist].items">
