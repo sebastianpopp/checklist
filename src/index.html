@@ -17,8 +17,8 @@
   <script type="module" src="./app.js"></script>
 </head>
 <body>
-  <div class="md:p-6 md:bg-gray-100 min-h-screen" x-data="checklist">
-    <div x-show="displayExportImport" class="bg-white max-w-screen-md mx-auto md:border border-gray-300 md:shadow-xl md:rounded-xl p-6">
+  <div class="flex md:p-6 md:bg-gray-100 h-screen" x-data="checklist">
+    <div x-show="displayExportImport" class="flex-1 bg-white max-w-screen-md mx-auto md:border border-gray-300 md:shadow-xl md:rounded-xl p-6 overflow-y-auto">
       <h1 class="text-2xl font-bold mb-2">Export / Import</h1>
       <textarea class="w-full border border-gray-300 focus:outline-none font-mono text-xs" cols="30" rows="10" x-model="json"></textarea>
       <div class="flex justify-end mt-2 gap-2">
@@ -28,8 +28,8 @@
       </div>
     </div>
 
-    <div x-show="!displayExportImport" class="bg-white max-w-screen-md mx-auto md:border border-gray-300 md:shadow-xl md:rounded-xl p-6">
-      <div class="flex justify-between items-center mb-5">
+    <div x-show="!displayExportImport" class="flex-1 relative bg-white max-w-screen-md mx-auto md:border border-gray-300 md:shadow-xl md:rounded-xl p-6 pt-0 overflow-y-auto">
+      <div class="sticky top-0 bg-white flex justify-between items-center pt-6 pb-5">
         <div class="flex-1">
           <div class="flex items-center justify-start mb-2">
             <div class="flex-1" x-show="edit">
