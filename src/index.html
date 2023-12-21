@@ -15,6 +15,21 @@
 
   <link rel="stylesheet" href="./app.css">
   <script type="module" src="./app.js"></script>
+
+  <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(["disableCookies"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//metrics.popp.xyz/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <noscript><p><img referrerpolicy="no-referrer-when-downgrade" src="//metrics.popp.xyz/matomo.php?idsite=9&amp;rec=1" style="border:0;" alt="" /></p></noscript>
 </head>
 <body>
   <div class="flex md:p-6 md:bg-gray-100 h-screen" x-data="checklist">
