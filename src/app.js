@@ -17,13 +17,6 @@ Alpine.data('checklist', () => ({
       const data = JSON.parse(state);
       this.checklists = data.checklists;
       this.checklist = data.checklist;
-
-      // Migrate existing items: assign sortIndex (item[3]) if missing
-      Object.values(this.checklists).forEach(checklist => {
-        checklist.items.forEach((item, i) => {
-          if (item.length < 4) item[3] = i;
-        });
-      });
     } else {
       this.checklists = {};
       this.addChecklist();
@@ -62,20 +55,17 @@ Alpine.data('checklist', () => ({
     return Math.round(items.filter(i => i[0]).length / items.length * 100);
   },
 
-  sortItems() {
-    this.items().sort((a, b) => {
-      if (a[0] !== b[0]) return a[0] ? 1 : -1;
-      return (a[3] ?? 0) - (b[3] ?? 0);
+  displayItems() {
+    const mapped = this.items().map((item, index) => ({ item, index }));
+    if (this.edit) return mapped;
+    return mapped.sort((a, b) => {
+      if (a.item[0] !== b.item[0]) return a.item[0] ? 1 : -1;
+      return 0;
     });
-  },
-
-  reindexItems() {
-    this.items().forEach((item, i) => { item[3] = i; });
   },
 
   toggleItem(index) {
     this.items()[index][0] = !this.items()[index][0];
-    this.sortItems();
   },
 
   move(index, dir) {
@@ -86,8 +76,6 @@ Alpine.data('checklist', () => ({
     } else if (dir === 'down' && index < items.length - 1) {
       items.splice(index + 1, 0, items.splice(index, 1)[0]);
     }
-
-    this.reindexItems();
   },
 
   remove(index) {
@@ -107,7 +95,7 @@ Alpine.data('checklist', () => ({
   add() {
     const items = this.items();
 
-    items.push([false, 'New Item', 'Add a description here...', items.length]);
+    items.push([false, 'New Item', 'Add a description here...']);
   },
 
   resetChecklist() {
@@ -118,7 +106,6 @@ Alpine.data('checklist', () => ({
     const items = this.items();
 
     items.forEach(i => i[0] = false);
-    this.sortItems();
   },
 
   addChecklist() {

@@ -110,21 +110,21 @@
         </div>
       </div>
       
-      <template x-for="(item, index) in checklists[checklist].items">
-        <div class="flex border border-gray-300 rounded p-3 mt-3" :class="{'cursor-pointer': !edit}" @click="!edit && toggleItem(index)">
-          <div class="flex justify-center items-center bg-gray-50 w-7 h-7 rounded-full text-gray-400 mr-3 transition-colors" :class="{'text-green-500 bg-green-50': item[0]}">
+      <template x-for="entry in displayItems()" :key="entry.index">
+        <div class="flex border border-gray-300 rounded p-3 mt-3" :class="{'cursor-pointer': !edit}" @click="!edit && toggleItem(entry.index)">
+          <div class="flex justify-center items-center bg-gray-50 w-7 h-7 rounded-full text-gray-400 mr-3 transition-colors" :class="{'text-green-500 bg-green-50': entry.item[0]}">
             <svg class="w-5 h-5" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12l5 5l10 -10" />
             </svg>
           </div>
-          <div class="flex-1 transition-opacity" :class="{'opacity-50': !edit && item[0]}">
-            <div class="text-lg font-bold" :class="{'line-through': item[0]}" x-text="item[1]" x-show="!edit"></div>
-            <input type="text" class="w-full text-lg font-bold text-gray-500 border border-gray-300 rounded p-1 mb-1" x-model="item[1]" x-show="edit">
-            <div class="text-gray-500" x-text="item[2]" x-show="!edit"></div>
-            <input type="text" class="w-full text-gray-500 border border-gray-300 rounded p-1" x-model="item[2]" x-show="edit">
+          <div class="flex-1 transition-opacity" :class="{'opacity-50': !edit && entry.item[0]}">
+            <div class="text-lg font-bold" :class="{'line-through': entry.item[0]}" x-text="entry.item[1]" x-show="!edit"></div>
+            <input type="text" class="w-full text-lg font-bold text-gray-500 border border-gray-300 rounded p-1 mb-1" x-model="entry.item[1]" x-show="edit">
+            <div class="text-gray-500" x-text="entry.item[2]" x-show="!edit"></div>
+            <input type="text" class="w-full text-gray-500 border border-gray-300 rounded p-1" x-model="entry.item[2]" x-show="edit">
           </div>
           <div class="flex flex-col justify-center text-gray-300 ml-3" x-show="edit">
-            <button class="hover:text-gray-500 transition-colors" @click.stop="move(index, 'up')">
+            <button class="hover:text-gray-500 transition-colors" @click.stop="move(entry.index, 'up')">
               <svg class="w-4 h-4" viewBox="0 0 24 24" stroke-width="3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <line x1="12" y1="5" x2="12" y2="19" />
@@ -132,7 +132,7 @@
                 <line x1="8" y1="9" x2="12" y2="5" />
               </svg>
             </button>
-            <button class="hover:text-gray-500 transition-colors" @click.stop="remove(index)">
+            <button class="hover:text-gray-500 transition-colors" @click.stop="remove(entry.index)">
               <svg class="w-4 h-4 mt-1" viewBox="0 0 24 24" stroke-width="3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <line x1="4" y1="7" x2="20" y2="7" />
@@ -142,7 +142,7 @@
                 <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
               </svg>
             </button>
-            <button class="hover:text-gray-500 transition-colors" @click.stop="move(index, 'down')">
+            <button class="hover:text-gray-500 transition-colors" @click.stop="move(entry.index, 'down')">
               <svg class="w-4 h-4 mt-1" viewBox="0 0 24 24" stroke-width="3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <line x1="12" y1="5" x2="12" y2="19" />
