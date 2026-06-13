@@ -55,6 +55,25 @@ Alpine.data('checklist', () => ({
     return Math.round(items.filter(i => i[0]).length / items.length * 100);
   },
 
+  toggleItem(index) {
+    const items = this.items();
+    const item = items[index];
+    item[0] = !item[0];
+
+    items.splice(index, 1);
+
+    if (item[0]) {
+      items.push(item);
+    } else {
+      const firstChecked = items.findIndex(i => i[0]);
+      if (firstChecked === -1) {
+        items.push(item);
+      } else {
+        items.splice(firstChecked, 0, item);
+      }
+    }
+  },
+
   move(index, dir) {
     const items = this.items();
 

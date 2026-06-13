@@ -111,7 +111,7 @@
       </div>
       
       <template x-for="(item, index) in checklists[checklist].items">
-        <div class="flex border border-gray-300 rounded p-3 mt-3" :class="{'cursor-pointer': !edit}" @click="!edit && (item[0]=!item[0])">
+        <div class="flex border border-gray-300 rounded p-3 mt-3" :class="{'cursor-pointer': !edit}" @click="!edit && toggleItem(index)">
           <div class="flex justify-center items-center bg-gray-50 w-7 h-7 rounded-full text-gray-400 mr-3 transition-colors" :class="{'text-green-500 bg-green-50': item[0]}">
             <svg class="w-5 h-5" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12l5 5l10 -10" />
