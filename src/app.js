@@ -60,6 +60,12 @@ Alpine.data('checklist', () => ({
     return Math.round(items.filter(i => i[0]).length / items.length * 100);
   },
 
+  allComplete() {
+    const items = this.items();
+
+    return items.length > 0 && items.every(i => i[0]);
+  },
+
   displayItems() {
     const mapped = this.items().map((item, index) => ({ item, index }));
     if (this.edit) return mapped;
