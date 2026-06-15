@@ -91,7 +91,7 @@
             </button>
           </div>
           <div class="text-gray-500" x-text="checklists[checklist].desc" x-show="!edit"></div>
-          <input type="text" class="w-full text-gray-500 border border-gray-300 rounded p-1" x-model="checklists[checklist].desc" x-show="edit">
+          <input type="text" class="w-full text-gray-500 border border-gray-300 rounded p-1" x-model="checklists[checklist].desc" x-show="edit" placeholder="Add a description here...">
         </div>
         <div class="relative w-16 h-16 ml-6" x-show="!edit">
           <svg class="flex-none w-full h-full" viewBox="0 0 37 37" stroke-width="5" fill="transparent">
@@ -122,7 +122,7 @@
             <div class="text-lg font-bold" :class="{'line-through': entry.item[0]}" x-text="entry.item[1]" x-show="!edit"></div>
             <input type="text" class="w-full text-lg font-bold text-gray-500 border border-gray-300 rounded p-1 mb-1" x-model="entry.item[1]" x-show="edit">
             <div class="text-gray-500" x-text="entry.item[2]" x-show="!edit"></div>
-            <input type="text" class="w-full text-gray-500 border border-gray-300 rounded p-1" x-model="entry.item[2]" x-show="edit">
+            <input type="text" class="w-full text-gray-500 border border-gray-300 rounded p-1" x-model="entry.item[2]" x-show="edit" placeholder="Add a description here...">
           </div>
           <div class="flex flex-col justify-center text-gray-300 ml-3" x-show="edit">
             <button class="hover:text-gray-500 transition-colors" @click.stop="move(entry.index, 'up')">

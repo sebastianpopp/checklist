@@ -100,7 +100,7 @@ Alpine.data('checklist', () => ({
   add() {
     const items = this.items();
 
-    items.push([false, 'New Item', 'Add a description here...']);
+    items.push([false, 'New Item', '']);
   },
 
   resetChecklist() {
@@ -118,7 +118,7 @@ Alpine.data('checklist', () => ({
 
     this.checklists[id] = {
       title: 'New Checklist',
-      desc: 'Add a description here...',
+      desc: '',
       items: [],
     };
 
