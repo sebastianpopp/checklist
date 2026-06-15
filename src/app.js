@@ -55,6 +55,19 @@ Alpine.data('checklist', () => ({
     return Math.round(items.filter(i => i[0]).length / items.length * 100);
   },
 
+  displayItems() {
+    const mapped = this.items().map((item, index) => ({ item, index }));
+    if (this.edit) return mapped;
+    return mapped.sort((a, b) => {
+      if (a.item[0] !== b.item[0]) return a.item[0] ? 1 : -1;
+      return 0;
+    });
+  },
+
+  toggleItem(index) {
+    this.items()[index][0] = !this.items()[index][0];
+  },
+
   move(index, dir) {
     const items = this.items();
 
