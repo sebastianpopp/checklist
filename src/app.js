@@ -1,5 +1,6 @@
 import Alpine from 'alpinejs';
 import {v4 as uuid} from 'uuid';
+import autoAnimate from '@formkit/auto-animate';
 
 Alpine.data('checklist', () => ({
   selectOpen: false,
@@ -27,6 +28,10 @@ Alpine.data('checklist', () => ({
         checklists: this.checklists,
         checklist: this.checklist
       }));
+    });
+
+    this.$nextTick(() => {
+      autoAnimate(this.$refs.itemsList);
     });
 
     // monitor scroll

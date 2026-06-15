@@ -110,6 +110,7 @@
         </div>
       </div>
       
+      <div x-ref="itemsList">
       <template x-for="entry in displayItems()" :key="entry.index">
         <div class="flex border border-gray-300 rounded p-3 mt-3" :class="{'cursor-pointer': !edit}" @click="!edit && toggleItem(entry.index)">
           <div class="flex justify-center items-center bg-gray-50 w-7 h-7 rounded-full text-gray-400 mr-3 transition-colors" :class="{'text-green-500 bg-green-50': entry.item[0]}">
@@ -153,6 +154,8 @@
           </div>
         </div>
       </template>
+
+      </div>
 
       <div class="flex justify-center mt-3" x-show="edit">
         <button class="text-gray-300 hover:text-gray-500 transition-colors" @click.stop="add()">
